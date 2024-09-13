@@ -74,7 +74,7 @@ export default async function SitesRoute() {
 
                             <CardFooter>
                                 <Button asChild className="w-full">
-                                    <Link href="#">Ver Artigos</Link>
+                                    <Link href={`/dashboard/sites/${item.id}`}>Ver Artigos</Link>
                                 </Button>
                             </CardFooter>
                         </Card>
