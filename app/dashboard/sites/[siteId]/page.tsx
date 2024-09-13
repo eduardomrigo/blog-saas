@@ -1,7 +1,7 @@
 import prisma from "@/app/utils/db";
 import { Button } from "@/components/ui/button";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { Book, PlusCircle, Settings } from "lucide-react";
+import { Book, FileIcon, PlusCircle, Settings } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -51,7 +51,7 @@ export default async function SiteIdRoute({ params }: { params: { siteId: string
                     </Link>
                 </Button>
                 <Button asChild>
-                    <Link href="#">
+                    <Link href={`/dashboard/sites/${params.siteId}/create`}>
                         <PlusCircle className="size-4 mr-2" />
                         Criar Artigo
                     </Link>
@@ -59,7 +59,19 @@ export default async function SiteIdRoute({ params }: { params: { siteId: string
             </div>
 
             {data === undefined || data.length === 0 ? (
-                <h1>vazio</h1>
+                <div className="flex flex-col items-center justify-center rounded-md border border-dashed p-8 text-center animate-in fade-in-50">
+                    <div className="flex size-20 items-center justify-center rounded-full bg-primary/10">
+                        <FileIcon className="size-10 text-primary" />
+                    </div>
+                    <h2 className="mt-6 text-xl font-semibold">Nenhum site encontrado</h2>
+                    <p className="mb-8 mt-2 text-center text-sm leading-6 text-muted-foreground  mx-auto">Você ainda não criou um site. Crie sites para poder visualizá-los</p>
+                    <Button asChild>
+                        <Link href="/dashboard/sites/new">
+                            <PlusCircle className="size-4 mr-2" />
+                            Criar site
+                        </Link>
+                    </Button>
+                </div>
             ) : (
                 <h1>dados aqui</h1>
             )}
