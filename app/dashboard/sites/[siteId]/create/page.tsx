@@ -1,5 +1,6 @@
 'use client'
 
+import TailwindEditor from "@/app/components/dashboard/EditorWrapper";
 import { UploadDropzone } from "@/app/utils/uploadthings";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,12 +10,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { ArrowLeft, Atom } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { JSONContent } from "novel";
 import { useState } from "react";
 import { toast } from "sonner";
 
 export default function ArticleCreationRoute({ params }: { params: { siteId: string } }) {
 
     const [imageUrl, setImageUrl] = useState<undefined | string>(undefined)
+    const [value, setValue] = useState<JSONContent | undefined>(undefined)
 
     return (
         <>
@@ -85,6 +88,12 @@ export default function ArticleCreationRoute({ params }: { params: { siteId: str
                                     }}
                                 />
                             )}
+                        </div>
+
+                        <div className="grid gap-2">
+                            <Label>Conteúdo do Artigo</Label>
+                            <p className="text-xs text-muted-foreground">Abra os comandos digitando "/"</p>
+                            <TailwindEditor onChange={setValue} initialValue={value} />
                         </div>
                     </form>
                 </CardContent>
