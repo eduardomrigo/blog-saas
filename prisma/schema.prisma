@@ -15,11 +15,26 @@ datasource db {
 }
 
 model User {
-  id String @id @unique
-  email String
-  firstName String
-  lastName String
+  id           String @id @unique
+  email        String
+  firstName    String
+  lastName     String
   profileImage String
 
   createdAt DateTime @default(now())
+
+  Site Site[]
+}
+
+model Site {
+  id           String   @id @default(uuid())
+  name         String
+  description  String
+  subdirectory String   @unique
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  imageUrl String?
+  User     User?   @relation(fields: [userId], references: [id])
+  userId   String?
 }
