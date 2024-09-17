@@ -125,9 +125,11 @@ export default async function SiteIdRoute({ params }: { params: { siteId: string
                                                             Ações
                                                         </DropdownMenuLabel>
                                                         <DropdownMenuSeparator />
-                                                        <DropdownMenuItem>
-                                                            <Pencil className=" text-blue-500 mr-2 size-4" />
-                                                            Editar
+                                                        <DropdownMenuItem asChild>
+                                                            <Link href={`/dashboard/sites/${params.siteId}/${item.id}`}>
+                                                                <Pencil className=" text-blue-500 mr-2 size-4" />
+                                                                Editar
+                                                            </Link>
                                                         </DropdownMenuItem>
                                                         <DropdownMenuItem>
                                                             <Trash className="text-red-500 mr-2 size-4" />
