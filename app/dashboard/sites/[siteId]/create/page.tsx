@@ -95,6 +95,8 @@ export default function ArticleCreationRoute({ params }: { params: { siteId: str
                             <p className="text-xs text-muted-foreground">Abra os comandos digitando "/"</p>
                             <TailwindEditor onChange={setValue} initialValue={value} />
                         </div>
+
+                        <Button className="w-fit">Enviar</Button>
                     </form>
                 </CardContent>
             </Card>
