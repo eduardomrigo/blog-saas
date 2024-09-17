@@ -131,9 +131,11 @@ export default async function SiteIdRoute({ params }: { params: { siteId: string
                                                                 Editar
                                                             </Link>
                                                         </DropdownMenuItem>
-                                                        <DropdownMenuItem>
-                                                            <Trash className="text-red-500 mr-2 size-4" />
-                                                            Excluir
+                                                        <DropdownMenuItem asChild>
+                                                            <Link href={`/dashboard/sites/${params.siteId}/${item.id}/delete`}>
+                                                                <Trash className="text-red-500 mr-2 size-4" />
+                                                                Excluir
+                                                            </Link>
                                                         </DropdownMenuItem>
                                                     </DropdownMenuContent>
                                                 </DropdownMenu>

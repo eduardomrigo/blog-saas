@@ -6,6 +6,7 @@ import { postSchema, siteSchema } from "./utils/zodSchemas";
 import prisma from "./utils/db";
 import { requireUser } from "./utils/requireUser";
 
+// Sites creation
 export async function CreateSiteAction(prevState: any, formData: FormData) {
     const user = await requireUser()
 
@@ -29,7 +30,7 @@ export async function CreateSiteAction(prevState: any, formData: FormData) {
     return redirect("/dashboard/sites")
 
 }
-
+// Articles creation
 export async function CreatePostAction(prevState: any, formData: FormData) {
     const user = await requireUser()
 
@@ -56,7 +57,7 @@ export async function CreatePostAction(prevState: any, formData: FormData) {
     return redirect(`/dashboard/sites/${formData.get('siteId')}`)
 
 }
-
+// Edit Articles
 export async function EditPostAction(prevState: any, formData: FormData) {
     const user = await requireUser()
 
@@ -84,4 +85,17 @@ export async function EditPostAction(prevState: any, formData: FormData) {
 
     return redirect(`/dashboard/sites/${formData.get('siteId')}`)
 
+}
+// Delete Articles
+export async function DeletePostAction(formData: FormData) {
+    const user = await requireUser()
+
+    const data = await prisma.article.delete({
+        where: {
+            userId: user.id,
+            id: formData.get('articleId') as string,
+        }
+    })
+
+    return redirect(`/dashboard/sites/${formData.get('siteId')}`)
 }
